@@ -52,7 +52,7 @@ const Sidebar = () => {
           width: isCollapsed ? "100px" : "300px !important",
           minWidth: isCollapsed ? "100px" : "300px !important",
           maxWidth: isCollapsed ? "100px" : "300px !important",
-         transition: "width 0.3s",
+         transition: "width 0.5s",
         },
         "& .pro-sidebar": {
           width: isCollapsed ? "100px" : "300px !important",
