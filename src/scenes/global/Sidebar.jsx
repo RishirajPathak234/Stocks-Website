@@ -48,17 +48,17 @@ const Sidebar = () => {
     <Box
       sx={{
         "& .pro-sidebar-inner": {
-          background: "#181818 !important",
+          background: "#060609 !important",
           width: isCollapsed ? "100px" : "300px !important",
           minWidth: isCollapsed ? "100px" : "300px !important",
           maxWidth: isCollapsed ? "100px" : "300px !important",
-         transition: "width 0.5s",
+         transition: "width 0.3s",
         },
         "& .pro-sidebar": {
           width: isCollapsed ? "100px" : "300px !important",
           minWidth: isCollapsed ? "100px" : "300px !important",
           maxWidth: isCollapsed ? "100px" : "300px !important",
-          backgroundColor: "#181818 !important",
+          backgroundColor: "#060609 !important",
         },
         "& .pro-icon-wrapper": {
           backgroundColor: "transparent !important",
@@ -83,7 +83,7 @@ const Sidebar = () => {
         },
 
         "& .pro-menu-item": {
-          backgroundColor: "#181818 !important",
+          backgroundColor: "#060609 !important",
           color: "gray !important",
         },
 

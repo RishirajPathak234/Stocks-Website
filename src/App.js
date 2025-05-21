@@ -6,9 +6,7 @@ import Dashboard from "./scenes/dashboard";
 import Team from "./scenes/team";
 import Invoices from "./scenes/invoices";
 
-import Bar from "./scenes/bar";
-import Line from "./scenes/line";
-import Pie from "./scenes/pie";
+
 
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { ColorModeContext, useMode } from "./theme";
@@ -31,9 +29,7 @@ function App() {
             
               <Route path="/invoices" element={<Invoices />} />
             
-              <Route path="/bar" element={<Bar />} />
-              <Route path="/pie" element={<Pie />} />
-              <Route path="/line" element={<Line />} />
+    
       
             </Routes>
           </main>
