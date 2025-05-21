@@ -893,6 +893,310 @@
 // export default Dashboard
 
 
+// "use client"
+
+// import { Box, Typography, useTheme } from "@mui/material"
+// import { tokens } from "../../theme"
+// import BarChartOutlinedIcon from "@mui/icons-material/BarChartOutlined"
+// import BoltOutlinedIcon from "@mui/icons-material/BoltOutlined"
+// import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined"
+// import PersonAddOutlinedIcon from "@mui/icons-material/PersonAddOutlined"
+// import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts'
+
+// // StatBox Component Definition
+// const StatBox = ({ title, subtitle, icon, increase }) => {
+//   const theme = useTheme()
+//   const colors = tokens(theme.palette.mode)
+
+//   // Extract the percentage color based on the first character
+//   const getIncreaseColor = (text) => {
+//     if (text.startsWith("+")) {
+//       // Different colors based on the metric
+//       if (increase.includes("10%")) return "#FFD700" // Yellow for 10%
+//       if (increase.includes("8%")) return "#4ECCA3" // Teal for 8%
+//       if (increase.includes("2%")) return "#D667CF" // Purple for 2%
+//       if (increase.includes("3%")) return "#38B2AC" // Blue for 3%
+//       return colors.greenAccent[600] // Default green
+//     }
+//     return colors.redAccent[600] // Red for negative values
+//   }
+
+//   return (
+//     <Box width="100%" m="0" p="20px">
+//       <Box display="flex" justifyContent="flex-start">
+//         {icon}
+//       </Box>
+//       <Box mt="20px">
+//         <Typography variant="h1" fontWeight="bold" color={colors.grey[100]}>
+//           {title}
+//         </Typography>
+//         <Typography variant="h5" color={colors.grey[400]} mt="5px">
+//           {subtitle}
+//         </Typography>
+//       </Box>
+//       <Box mt="10px">
+//         <Typography variant="h6" fontWeight="bold" color={getIncreaseColor(increase)}>
+//           {increase}
+//         </Typography>
+//       </Box>
+//     </Box>
+//   )
+// }
+
+// // Progress Bar Component for Top Products
+// const ProgressBar = ({ value, color }) => {
+//   return (
+//     <Box width="100%" height="8px" bgcolor="#181818" borderRadius="4px">
+//       <Box height="100%" bgcolor={color} borderRadius="4px" width={`${value}%`} />
+//     </Box>
+//   )
+// }
+
+// // Main Dashboard Component
+// const Dashboard = () => {
+//   const theme = useTheme()
+//   const colors = tokens(theme.palette.mode)
+
+//   // Mock data for top products
+//   const topProducts = [
+//     { id: "01", name: "Home Decore Range", popularity: 78, color: "#FFB74D" },
+//     { id: "02", name: "Disney Princess Dress", popularity: 62, color: "#4ECCA3" },
+//     { id: "03", name: "Bathroom Essentials", popularity: 51, color: "#64B5F6" },
+//     { id: "04", name: "Apple Smartwatch", popularity: 29, color: "#E57373" },
+//   ]
+
+//   // Mock data for volume chart - formatted for Recharts
+//   const volumeData = [
+//     { level: 'level 1', Service: 78, Volume: 79 },
+//     { level: 'level 2', Service: 78, Volume: 79 },
+//     { level: 'level 3', Service: 92, Volume: 65 },
+//     { level: 'level 4', Service: 114, Volume: 43 },
+//     { level: 'level 5', Service: 75, Volume: 82 },
+//     { level: 'level 6', Service: 52, Volume: 105 },
+//   ]
+
+//   return (
+//     <>
+//       {/* TOP SALES SUMMARY SECTION */}
+//       <Box
+//         sx={{
+//           backgroundColor: "#181818",
+//           borderRadius: "15px",
+//           padding: "20px",
+//           margin: "0 auto",
+//           width: "98%",
+//           mb: "20px",
+     
+//         }}
+//       >
+//         {/* HEADER */}
+//         <Box width="100%" mb="20px" p="20px" >
+//           <Box>
+//             <Typography variant="h2" fontWeight="bold" color={colors.grey[100]} mb="5px">
+//               Today's Sales
+//             </Typography>
+//             <Typography variant="h5" color={colors.grey[400]} mb="20px">
+//               Sales Summary
+//             </Typography>
+//           </Box>
+
+//           {/* GRID & CHARTS */}
+//           <Box display="grid"  gridTemplateColumns="repeat(12, 1fr)" gridAutoRows="200px" gap="20px">
+//             {/* Total Sales */}
+//             <Box
+//               gridColumn="span 3"
+//               backgroundColor="#060609"
+//               display="flex"
+//               alignItems="center"
+//               justifyContent="center"
+//               borderRadius="15px"
+//             >
+//               <StatBox
+//                 title="$5k"
+//                 subtitle="Total Sales"
+//                 increase="+10% from yesterday"
+//                 icon={<BarChartOutlinedIcon sx={{ color: "#FFD700", fontSize: "26px" }} />}
+//               />
+//             </Box>
+
+//             {/* Total Order */}
+//             <Box
+//               gridColumn="span 3"
+//               backgroundColor="#060609"
+//               display="flex"
+//               alignItems="center"
+//               justifyContent="center"
+//               borderRadius="15px"
+//             >
+//               <StatBox
+//                 title="500"
+//                 subtitle="Total Order"
+//                 increase="+8% from yesterday"
+//                 icon={<BoltOutlinedIcon sx={{ color: "#4ECCA3", fontSize: "26px" }} />}
+//               />
+//             </Box>
+
+//             {/* Product Sold */}
+//             <Box
+//               gridColumn="span 3"
+//               backgroundColor="#060609"
+//               display="flex"
+//               alignItems="center"
+//               justifyContent="center"
+//               borderRadius="15px"
+//             >
+//               <StatBox
+//                 title="9"
+//                 subtitle="Product Sold"
+//                 increase="+2% from yesterday"
+//                 icon={<ShoppingBagOutlinedIcon sx={{ color: "#D667CF", fontSize: "26px" }} />}
+//               />
+//             </Box>
+
+//             {/* New Customer */}
+//             <Box
+//               gridColumn="span 3"
+//               backgroundColor="#060609"
+//               display="flex"
+//               alignItems="center"
+//               justifyContent="center"
+//               borderRadius="15px"
+//             >
+//               <StatBox
+//                 title="12"
+//                 subtitle="New Customer"
+//                 increase="+3% from yesterday"
+//                 icon={<PersonAddOutlinedIcon sx={{ color: "#38B2AC", fontSize: "26px" }} />}
+//               />
+//             </Box>
+//           </Box>
+//         </Box>
+//       </Box>
+
+//       {/* BOTTOM SECTIONS: LEVEL AND TOP PRODUCTS */}
+//         <Box display="flex" gap="20px">
+//           {/* Level Section - Bar Chart */}
+//           <Box
+//             sx={{
+//               backgroundColor: "#181818",
+//               borderRadius: "15px",
+//               padding: "30px",
+//               flex: 1,
+//               width: "45%",
+//               ml: "13px",
+//               mb: "100px",
+//             }}
+//           >
+//             <Typography variant="h2" fontWeight="bold" color={colors.grey[100]} mb="30px">
+//               Level
+//             </Typography>
+
+//             {/* Recharts Stacked Bar Chart */}
+//             <Box height="300px" width="400px">
+//               <ResponsiveContainer width="100%" height="100%">
+//                 <BarChart
+//                   data={volumeData}
+//                   margin={{
+//                     left: -20,
+//                   }}
+//                 >
+//                   <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#333333" />
+//                   <XAxis  stroke="#9e9e9e" />
+//                   <YAxis stroke="#9e9e9e" />
+//                   <Tooltip
+//                     contentStyle={{
+//                       backgroundColor: "#2d2d2d",
+//                       border: "none",
+//                       borderRadius: "15px",
+//                       color: "#ffffff",
+//                     }}
+//                   />
+//                   <Bar dataKey="Volume" stackId="a" fill="#4ECCA3" radius={[6, 6, 0, 0]} barSize={35} />
+//                   <Bar dataKey="Service" stackId="a" fill="#FFC107" radius={[6, 6, 0, 0]} barSize={35} />
+//                 </BarChart>
+//               </ResponsiveContainer>
+//             </Box>
+
+//             {/* Legend */}
+        
+//         </Box>
+
+//         {/* Top Products Section */}
+//         <Box
+//           sx={{
+//             backgroundColor: "#181818",
+//             borderRadius: "15px",
+//             padding: "30px",
+//             flex: 2,
+//             mr: "13px",
+//             mb: "100px",
+//           }}
+//         >
+//           <Typography variant="h2" fontWeight="bold" color={colors.grey[100]} mb="30px">
+//             Top Products
+//           </Typography>
+
+//           {/* Table Header */}
+//           <Box display="flex" mb="15px">
+//             <Typography color="#9e9eb1" flex="1">
+//               #
+//             </Typography>
+//             <Typography color="#9e9eb1" flex="3">
+//               Name
+//             </Typography>
+//             <Typography color="#9e9eb1" flex="3">
+//               Popularity
+//             </Typography>
+//             <Typography color="#9e9eb1" flex="1" textAlign="right">
+//               Sales
+//             </Typography>
+//           </Box>
+         
+
+//           {/* Table Rows */}
+//           {topProducts.map((product) => (
+//             <Box
+//               key={product.id}
+//               display="flex"
+//               alignItems="center"
+//               mb="20px"
+//               pb="15px"
+//               borderBottom={`1px solid #2e2e3c`}
+//             >
+//               <Typography color={colors.grey[100]} flex="1">
+//                 {product.id}
+//               </Typography>
+//               <Typography color={colors.grey[100]} flex="3">
+//                 {product.name}
+//               </Typography>
+//               <Box flex="3" pr="15px">
+//                 <ProgressBar value={product.popularity} color={product.color} />
+//               </Box>
+//               <Box
+//                 flex="1"
+//                 sx={{
+//                   border: `1px solid ${product.color}`,
+//                   borderRadius: "4px",
+//                   padding: "5px 10px",
+//                   textAlign: "center",
+//                   color: colors.grey[100],
+//                 }}
+//               >
+//                 {product.popularity}%
+//               </Box>
+//             </Box>
+//           ))}
+//         </Box>
+//       </Box>
+//     </>
+//   )
+// }
+
+
+
+// export default Dashboard
+
+
 "use client"
 
 import { Box, Typography, useTheme } from "@mui/material"
@@ -901,7 +1205,8 @@ import BarChartOutlinedIcon from "@mui/icons-material/BarChartOutlined"
 import BoltOutlinedIcon from "@mui/icons-material/BoltOutlined"
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined"
 import PersonAddOutlinedIcon from "@mui/icons-material/PersonAddOutlined"
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts'
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts"
+import { Area, AreaChart, PieChart, Pie, Cell } from "recharts"
 
 // StatBox Component Definition
 const StatBox = ({ title, subtitle, icon, increase }) => {
@@ -967,12 +1272,12 @@ const Dashboard = () => {
 
   // Mock data for volume chart - formatted for Recharts
   const volumeData = [
-    { level: 'level 1', Service: 78, Volume: 79 },
-    { level: 'level 2', Service: 78, Volume: 79 },
-    { level: 'level 3', Service: 92, Volume: 65 },
-    { level: 'level 4', Service: 114, Volume: 43 },
-    { level: 'level 5', Service: 75, Volume: 82 },
-    { level: 'level 6', Service: 52, Volume: 105 },
+    { level: "level 1", Service: 78, Volume: 79 },
+    { level: "level 2", Service: 78, Volume: 79 },
+    { level: "level 3", Service: 92, Volume: 65 },
+    { level: "level 4", Service: 114, Volume: 43 },
+    { level: "level 5", Service: 75, Volume: 82 },
+    { level: "level 6", Service: 52, Volume: 105 },
   ]
 
   return (
@@ -986,11 +1291,11 @@ const Dashboard = () => {
           margin: "0 auto",
           width: "98%",
           mb: "20px",
-     
+          boxShadow: "0 2px 12px 0 rgba(0,0,0,0.7)",
         }}
       >
         {/* HEADER */}
-        <Box width="100%" mb="20px" p="20px" >
+        <Box width="100%" mb="20px" p="20px">
           <Box>
             <Typography variant="h2" fontWeight="bold" color={colors.grey[100]} mb="5px">
               Today's Sales
@@ -1001,7 +1306,7 @@ const Dashboard = () => {
           </Box>
 
           {/* GRID & CHARTS */}
-          <Box display="grid"  gridTemplateColumns="repeat(12, 1fr)" gridAutoRows="200px" gap="20px">
+          <Box display="grid" gridTemplateColumns="repeat(12, 1fr)" gridAutoRows="200px" gap="20px">
             {/* Total Sales */}
             <Box
               gridColumn="span 3"
@@ -1074,8 +1379,8 @@ const Dashboard = () => {
       </Box>
 
       {/* BOTTOM SECTIONS: LEVEL AND TOP PRODUCTS */}
-        <Box display="flex" gap="20px">
-          {/* Level Section - Bar Chart */}
+      <Box display="flex" gap="20px">
+     
           <Box
             sx={{
               backgroundColor: "#181818",
@@ -1084,7 +1389,8 @@ const Dashboard = () => {
               flex: 1,
               width: "45%",
               ml: "13px",
-              mb: "100px",
+              mb: "20px",
+             boxShadow: "0 2px 12px 0 rgba(0,0,0,0.7)",
             }}
           >
             <Typography variant="h2" fontWeight="bold" color={colors.grey[100]} mb="30px">
@@ -1092,51 +1398,52 @@ const Dashboard = () => {
             </Typography>
 
             {/* Recharts Stacked Bar Chart */}
-            <Box height="300px" width="400px">
-              <ResponsiveContainer width="100%" height="100%">
-                <BarChart
-                  data={volumeData}
-                  margin={{
-                    left: -20,
+          <Box height="300px" width="400px">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart
+                data={volumeData}
+                margin={{
+                  left: -20,
+                }}
+              >
+                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#333333" />
+                <XAxis stroke="#9e9e9e" />
+                <YAxis stroke="#9e9e9e" />
+                <Tooltip
+                  contentStyle={{
+                    backgroundColor: "#2d2d2d",
+                    border: "none",
+                    borderRadius: "15px",
+                    color: "#ffffff",
                   }}
-                >
-                  <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#333333" />
-                  <XAxis  stroke="#9e9e9e" />
-                  <YAxis stroke="#9e9e9e" />
-                  <Tooltip
-                    contentStyle={{
-                      backgroundColor: "#2d2d2d",
-                      border: "none",
-                      borderRadius: "15px",
-                      color: "#ffffff",
-                    }}
-                  />
-                  <Bar dataKey="Volume" stackId="a" fill="#4ECCA3" radius={[6, 6, 0, 0]} barSize={35} />
-                  <Bar dataKey="Service" stackId="a" fill="#FFC107" radius={[6, 6, 0, 0]} barSize={35} />
-                </BarChart>
-              </ResponsiveContainer>
-            </Box>
+                />
+                <Bar dataKey="Volume" stackId="a" fill="#4ECCA3" radius={[6, 6, 0, 0]} barSize={35} />
+                <Bar dataKey="Service" stackId="a" fill="#FFC107" radius={[6, 6, 0, 0]} barSize={35} />
+              </BarChart>
+            </ResponsiveContainer>
+          </Box>
 
-            {/* Legend */}
-        
+          {/* Legend */}
         </Box>
 
-        {/* Top Products Section */}
-        <Box
-          sx={{
-            backgroundColor: "#181818",
-            borderRadius: "15px",
-            padding: "30px",
-            flex: 2,
-            mr: "13px",
-            mb: "100px",
-          }}
-        >
-          <Typography variant="h2" fontWeight="bold" color={colors.grey[100]} mb="30px">
-            Top Products
-          </Typography>
+       
+          <Box
+            sx={{
+              backgroundColor: "#181818",
+              borderRadius: "15px",
+              padding: "30px",
+              flex: 2,
+              mr: "13px",
+              mb: "20px",
+              boxShadow: "0 2px 12px 0 rgba(0,0,0,0.7)",
+            
+            }}
+          >
+            <Typography variant="h2" fontWeight="bold" color={colors.grey[100]} mb="30px">
+              Top Products
+            </Typography>
 
-          {/* Table Header */}
+            {/* Table Header */}
           <Box display="flex" mb="15px">
             <Typography color="#9e9eb1" flex="1">
               #
@@ -1151,7 +1458,6 @@ const Dashboard = () => {
               Sales
             </Typography>
           </Box>
-         
 
           {/* Table Rows */}
           {topProducts.map((product) => (
@@ -1186,6 +1492,161 @@ const Dashboard = () => {
               </Box>
             </Box>
           ))}
+        </Box>
+      </Box>
+
+      {/* THIRD ROW: CUSTOMER FULFILLMENT AND EARNINGS */}
+      <Box display="flex" gap="20px" mb="20px">
+        {/* Customer Fulfillment Section */}
+        <Box
+          sx={{
+            backgroundColor: "#181818",
+            borderRadius: "15px",
+            padding: "30px",
+            flex: 1,
+            width: "45%",
+            ml: "13px",
+            mb: "20px",
+            boxShadow: "0 2px 12px 0 rgba(0,0,0,0.7)",
+          }}
+        >
+          <Typography variant="h2" fontWeight="bold" color={colors.grey[100]} mb="20px">
+            Customer Fulfillment
+          </Typography>
+
+          {/* Line Chart */}
+          <Box height="300px" width="100%">
+            <ResponsiveContainer width="100%" height="100%">
+              <AreaChart
+                data={[
+                  { name: "Jan", thisMonth: 65, lastMonth: 40 },
+                  { name: "Feb", thisMonth: 30, lastMonth: 45 },
+                  { name: "Mar", thisMonth: 100, lastMonth: 60 },
+                  { name: "Apr", thisMonth: 70, lastMonth: 55 },
+                  { name: "May", thisMonth: 85, lastMonth: 65 },
+                  { name: "Jun", thisMonth: 90, lastMonth: 70 },
+                ]}
+                margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+              >
+                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#333333" />
+                <XAxis dataKey="name" stroke="#9e9e9e" />
+                <YAxis stroke="#9e9e9e" />
+                <Tooltip
+                  contentStyle={{
+                    backgroundColor: "#2d2d2d",
+                    border: "none",
+                    borderRadius: "15px",
+                    color: "#ffffff",
+                  }}
+                />
+                <defs>
+                  <linearGradient id="colorThisMonth" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="#8884d8" stopOpacity={0.8} />
+                    <stop offset="95%" stopColor="#8884d8" stopOpacity={0.2} />
+                  </linearGradient>
+                  <linearGradient id="colorLastMonth" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="#82ca9d" stopOpacity={0.8} />
+                    <stop offset="95%" stopColor="#82ca9d" stopOpacity={0.2} />
+                  </linearGradient>
+                </defs>
+                <Area
+                  type="monotone"
+                  dataKey="thisMonth"
+                  stroke="#8884d8"
+                  fillOpacity={1}
+                  fill="url(#colorThisMonth)"
+                />
+                <Area
+                  type="monotone"
+                  dataKey="lastMonth"
+                  stroke="#82ca9d"
+                  fillOpacity={1}
+                  fill="url(#colorLastMonth)"
+                />
+              </AreaChart>
+            </ResponsiveContainer>
+          </Box>
+
+          {/* Legend */}
+          <Box display="flex" justifyContent="space-between" mt="20px">
+            <Box display="flex" alignItems="center">
+              <Box width="12px" height="12px" borderRadius="50%" bgcolor="#8884d8" mr="8px" />
+              <Typography color={colors.grey[100]}>This Month</Typography>
+              <Typography color={colors.grey[100]} ml="10px" fontWeight="bold">
+                $4,785
+              </Typography>
+            </Box>
+            <Box display="flex" alignItems="center">
+              <Box width="12px" height="12px" borderRadius="50%" bgcolor="#82ca9d" mr="8px" />
+              <Typography color={colors.grey[100]}>Last Month</Typography>
+              <Typography color={colors.grey[100]} ml="10px" fontWeight="bold">
+                $4,029
+              </Typography>
+            </Box>
+          </Box>
+        </Box>
+
+        {/* Earnings Section */}
+        <Box
+          sx={{
+            backgroundColor: "#181818",
+            borderRadius: "15px",
+            padding: "30px",
+            flex: 1,
+            mr: "13px",
+            mb: "20px",
+            boxShadow: "0 2px 12px 0 rgba(0,0,0,0.7)",
+          }}
+        >
+          <Typography variant="h2" fontWeight="bold" color={colors.grey[100]} mb="10px">
+            Earnings
+          </Typography>
+          <Typography variant="h5" color={colors.grey[400]} mb="20px">
+            Total Expense
+          </Typography>
+
+          <Typography variant="h1" fontWeight="bold" color="#4ECCA3" mb="10px">
+            $6078.76
+          </Typography>
+          <Typography variant="h5" color={colors.grey[400]} mb="30px">
+            Profit is 48% More than last Month
+          </Typography>
+
+          {/* Gauge Chart */}
+          <Box display="flex" justifyContent="center" height="200px">
+            <ResponsiveContainer width="80%" height="100%">
+              <PieChart>
+                <Pie
+                  data={[
+                    { name: "Filled", value: 80 },
+                    { name: "Empty", value: 20 },
+                  ]}
+                  cx="50%"
+                  cy="50%"
+                  startAngle={180}
+                  endAngle={0}
+                  innerRadius={60}
+                  outerRadius={100}
+                  paddingAngle={0}
+                  dataKey="value"
+                >
+                  <Cell fill="#4ECCA3" />
+                  <Cell fill="#181818" />
+                </Pie>
+                <text
+                  x="50%"
+                  y="50%"
+                  textAnchor="middle"
+                  dominantBaseline="middle"
+                  fill="#ffffff"
+                  fontSize="48px"
+                  fontWeight="bold"
+                >
+                  80%
+                </text>
+              </PieChart>
+            </ResponsiveContainer>
+          </Box>
         </Box>
       </Box>
     </>
