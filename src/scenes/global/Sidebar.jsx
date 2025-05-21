@@ -48,152 +48,169 @@ const Sidebar = () => {
     <Box
       sx={{
         "& .pro-sidebar-inner": {
-          background: `#181424 !important`,
+          background: "#181818 !important",
           width: isCollapsed ? "100px" : "300px !important",
           minWidth: isCollapsed ? "100px" : "300px !important",
           maxWidth: isCollapsed ? "100px" : "300px !important",
-          transition: "width 0.3s",
-
+         transition: "width 0.3s",
         },
         "& .pro-sidebar": {
           width: isCollapsed ? "100px" : "300px !important",
           minWidth: isCollapsed ? "100px" : "300px !important",
           maxWidth: isCollapsed ? "100px" : "300px !important",
-          backgroundColor: "#1E1B2E !important",
+          backgroundColor: "#181818 !important",
         },
         "& .pro-icon-wrapper": {
           backgroundColor: "transparent !important",
         },
         "& .pro-inner-item": {
-          padding: "5px 40px 5px 20px !important",
-          color: "gray !important",
+          padding: "5px 20px 5px 15px !important", // reduce horizontal padding
+          fontWeight: 900,
+        },
+        // Remove hover effect for the logo/menu item
+        "& .sidebar-logo-menuitem.pro-inner-item:hover": {
+          color: "inherit !important",
+          backgroundColor: "   !important",
+          borderRadius: "0",
         },
         "& .pro-inner-item:hover": {
-          color: "#CFF7EF !important",
-          
+          color: "#bbbbbb !important",
+          backgroundColor: "transparent !important",
+          borderRadius: "15px",
+          width: "100%", // make the mint green hover background smaller
+          marginLeft: "auto",
+          marginRight: "auto",
         },
+
+        "& .pro-menu-item": {
+          backgroundColor: "#181818 !important",
+          color: "gray !important",
+        },
+
         "& .pro-menu-item.active": {
-          color: "#CFF7EF !important",
-          borderRadius: "10px",
-          
+          color: "#282828 !important",
+          borderRadius: "15px",
+          padding: "5px 18px 5px 12px !important",
           backgroundColor: "#CFF7EF !important",
+          width: "90%", 
+          marginLeft: "auto",
+          marginRight: "auto",
         },
       }}
     >
       <ProSidebar collapsed={isCollapsed}>
         <Menu iconShape="square">
           {/* LOGO AND MENU ICON */}
-                  <MenuItem
-                  onClick={() => setIsCollapsed(!isCollapsed)}
-                  icon={
-                    isCollapsed ? (
-                    <MenuOpenRoundedIcon sx={{ fontSize: 40, ml: 4 }} />
-                    ) : undefined
-                  }
-                  style={{
-                    margin: "16px 0 28  px 0",
-                    color: colors.grey[200],
-                    fontSize: "1.4rem",
-                    minHeight: "80px",
-                  
-                  }}
-                  >
-                  {!isCollapsed && (
-                    <Box
-                    display="flex"
-                    justifyContent="space-between"
-                    alignItems="center"
-                    ml="15px"
-                    
-                    >
-                    <Typography variant="h3" fontWeight='bolder' color={colors.grey[100]} fontSize="1.4rem">
-                    Sales <br /> Management
-                    </Typography>
-                    <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
-                    <MenuOpenRoundedIcon sx={{ fontSize: 38 }} />
-                    </IconButton>
-                    </Box>
-                  )}
-                  </MenuItem>
-                   
-                  
+          <MenuItem
+            onClick={() => setIsCollapsed(!isCollapsed)}
+            icon={
+              isCollapsed ? (
+                <MenuOpenRoundedIcon sx={{ fontSize: 40, ml: 4 }} />
+              ) : undefined
+            }
+            style={{
+              margin: "16px 0 28px 0",
+              color: colors.grey[200],
+              fontSize: "1.4rem",
+              minHeight: "80px",
+              pointerEvents: "auto",
+              backgroundColor: "transparent !important",
+            }}
+            className="sidebar-logo-menuitem"
+          >
+            {!isCollapsed && (
+              <Box
+                display="flex"
+                justifyContent="space-between"
+                alignItems="center"
+                ml="15px"
+                sx={{
+                  fontSize: 38,
+                  borderRadius: 15,
+                  backgroundColor: "transparent",
+                  padding: "5px 25px 5px 15px !important",
+                }}
+              >
+                <Typography
+                  variant="h3"
+                  fontWeight="bolder"
+                  color={colors.grey[100]}
+                  fontSize="1.4rem"
+                  mt="-20px"
+                  padding="2px 15px 0 5px !important"
+                >
+                  Sales <br /> Management
+                </Typography>
+                <Box sx={{ width: "10px" }} /> {/* Add gap between text and button */}
+                <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
+                  <MenuOpenRoundedIcon sx={{ fontSize: 38, borderRadius: 15 }} />
+                </IconButton>
+              </Box>
+            )}
+          </MenuItem>
 
-                  <Box paddingLeft={isCollapsed ? undefined : "3%"} >
-                  <Item
-                    title="Dashboard"
-                    to="/"
-                    icon={<AddHomeRoundedIcon sx={{ fontSize: 30  }} />}
-                    selected={selected}
-                    setSelected={setSelected}
-             
-                  />
+          <Box paddingLeft={isCollapsed ? undefined : "3%"}>
+            <Item
+              title="Dashboard"
+              to="/"
+              icon={<AddHomeRoundedIcon sx={{ fontSize: 30 }} />}
+              selected={selected}
+              setSelected={setSelected}
+            />
 
-                  <Item
-                    title="Profile"
-                    to="/profile"
-                    icon={<PermIdentityOutlinedIcon sx={{ fontSize: 30}} />}
-                    selected={selected}
-                    setSelected={setSelected}
-                  />
+            <Item
+              title="Profile"
+              to="/profile"
+              icon={<PermIdentityOutlinedIcon sx={{ fontSize: 30 }} />}
+              selected={selected}
+              setSelected={setSelected}
+            />
 
-                  <Item
-                    title="Leaderboard"
-                    to="/"
-                    icon={<LeaderboardOutlinedIcon sx={{ fontSize: 30 }} />}
-                    selected={selected}
-                    setSelected={setSelected}
-                    
-                  />
+            <Item
+              title="Leaderboard"
+              to="/"
+              icon={<LeaderboardOutlinedIcon sx={{ fontSize: 30 }} />}
+              selected={selected}
+              setSelected={setSelected}
+            />
 
-                  
-                  <Item
-                    title="Order"
-                    to="/invoices"
-                    icon={<ShoppingCartOutlinedIcon sx={{ fontSize: 30 }} />}
-                    selected={selected}
-                    setSelected={setSelected}
-                  />
+            <Item
+              title="Order"
+              to="/invoices"
+              icon={<ShoppingCartOutlinedIcon sx={{ fontSize: 30 }} />}
+              selected={selected}
+              setSelected={setSelected}
+            />
 
-                  <Item
-                    title="Sales Report"
-                    to="/form"
-                    icon={<TrendingUpOutlinedIcon sx={{ fontSize: 30 }} />}
-                    selected={selected}
-                    setSelected={setSelected}
-                  />
-                  <Item
-                    title="Message"
-                    to="/calendar"
-                    icon={<MessageOutlinedIcon sx={{ fontSize: 30 }} />}
-                    selected={selected}
-                    setSelected={setSelected}
-                  />
-                  <Item
-                    title="Settings"
-                    to="/faq"
-                    icon={<SettingsOutlinedIcon sx={{ fontSize: 30 }} />}
-                    selected={selected}
-                    setSelected={setSelected}
-                  />
+            <Item
+              title="Sales Report"
+              to="/form"
+              icon={<TrendingUpOutlinedIcon sx={{ fontSize: 30 }} />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
+              title="Message"
+              to="/calendar"
+              icon={<MessageOutlinedIcon sx={{ fontSize: 30 }} />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
+              title="Settings"
+              to="/faq"
+              icon={<SettingsOutlinedIcon sx={{ fontSize: 30 }} />}
+              selected={selected}
+              setSelected={setSelected}
+            />
 
-                  <Item
-                    title="Favorites"
-                    to="/contacts"
-                    icon={<StarRoundedIcon sx={{ fontSize: 30 }} />}
-                    selected={selected}
-                    setSelected={setSelected}
-                    
-                  />
-
-                  {/* <Typography
-                    variant="h6"
-                    color={colors.grey[300]}
-                    sx={{ m: "15px 0 5px 20px" }}
-                  >
-                    Charts
-                  </Typography> */}
-           
-           
+            <Item
+              title="Favorites"
+              to="/contacts"
+              icon={<StarRoundedIcon sx={{ fontSize: 30 }} />}
+              selected={selected}
+              setSelected={setSelected}
+            />
           </Box>
         </Menu>
       </ProSidebar>
