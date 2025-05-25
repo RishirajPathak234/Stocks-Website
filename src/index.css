@@ -16,9 +16,7 @@ body,
   position: relative;
 }
 
-::-webkit-scrollbar {
-  width: 10px;
-}
+
 
 /* Track */
 ::-webkit-scrollbar-track {

@@ -92,7 +92,7 @@
 //           borderRadius: "15px",
 //           padding: "5px 18px 5px 12px !important",
 //           backgroundColor: "#CFF7EF !important",
-//           width: "90%", 
+//           width: "90%",
 //           marginLeft: "auto",
 //           marginRight: "auto",
 //         },
@@ -141,8 +141,7 @@
 //                 >
 //                   Foxstocks
 //                 </Typography>
-              
-          
+
 //               </Box>
 //             )}
 //           </MenuItem>
@@ -218,279 +217,320 @@
 
 // export default Sidebar;
 
+"use client"
 
-import { useState } from "react";
-import { ProSidebar, Menu, MenuItem } from "react-pro-sidebar";
-import { Box, IconButton, Typography, useTheme, Card, CardContent } from "@mui/material";
-import { Link } from "react-router-dom";
-import "react-pro-sidebar/dist/css/styles.css";
-import { tokens } from "../../theme";
-import AddHomeRoundedIcon from '@mui/icons-material/AddHomeRounded';
-import PermIdentityOutlinedIcon from '@mui/icons-material/PermIdentityOutlined';
-import BarChartOutlinedIcon from "@mui/icons-material/BarChartOutlined";
-import TrendingUpOutlinedIcon from '@mui/icons-material/TrendingUpOutlined';
-import AccountBalanceWalletOutlinedIcon from '@mui/icons-material/AccountBalanceWalletOutlined';
-import AssessmentOutlinedIcon from '@mui/icons-material/AssessmentOutlined';
-import SchoolOutlinedIcon from '@mui/icons-material/SchoolOutlined';
-import ExitToAppOutlinedIcon from '@mui/icons-material/ExitToAppOutlined';
-import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
-import LightbulbOutlinedIcon from '@mui/icons-material/LightbulbOutlined';
+import { useState } from "react"
+import { Box, Typography, Card, CardContent } from "@mui/material"
+import DashboardIcon from "@mui/icons-material/Dashboard"
+import BusinessCenterIcon from "@mui/icons-material/BusinessCenter"
+import BarChartOutlinedIcon from "@mui/icons-material/BarChartOutlined"
+import WalletSharpIcon from "@mui/icons-material/WalletSharp"
+import CompareArrowsIcon from "@mui/icons-material/CompareArrows"
+import SchoolOutlinedIcon from "@mui/icons-material/SchoolOutlined"
+import ExitToAppOutlinedIcon from "@mui/icons-material/ExitToAppOutlined"
+import AccountBalanceSharpIcon from "@mui/icons-material/AccountBalanceSharp"
+import LightbulbOutlinedIcon from "@mui/icons-material/LightbulbOutlined"
 
 const Item = ({ title, to, icon, selected, setSelected, sx }) => {
   return (
-    <MenuItem
-      active={selected === title}
-      style={{
-        color: selected === title ? "#6366f1" : "#64748b",
-        margin: "2px 16px",
+    <Box
+      onClick={() => setSelected(title)}
+      sx={{
+        display: "flex",
+        alignItems: "center",
+        padding: "12px 16px",
+        margin: "2px 8px",
         borderRadius: "8px",
-        padding: "8px 12px",
-        fontSize: "14px",
-        fontWeight: selected === title ? 600 : 400,
+        cursor: "pointer",
+        transition: "all 0.2s ease",
         backgroundColor: selected === title ? "#e0e7ff" : "transparent",
+        color: selected === title ? "#6366f1" : "#64748b",
+        fontWeight: selected === title ? 600 : 400,
+        "&:hover": {
+          backgroundColor: selected === title ? "#e0e7ff" : "#f8fafc",
+        },
         ...(sx || {}),
       }}
-      onClick={() => setSelected(title)}
-      icon={icon}
     >
-      <Typography sx={{ fontSize: "14px", fontWeight: "inherit" }}>{title}</Typography>
-      <Link to={to} />
-    </MenuItem>
-  );
-};
+      <Box
+        sx={{
+          minWidth: "32px",
+          width: "32px",
+          height: "32px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          marginRight: "16px",
+          color: "inherit",
+        }}
+      >
+        {icon}
+      </Box>
+      <Typography sx={{ fontSize: "16px", fontWeight: "inherit" }}>{title}</Typography>
+    </Box>
+  )
+}
 
 const Sidebar = () => {
-  const [isCollapsed, setIsCollapsed] = useState(false);
-  const [selected, setSelected] = useState("Dashboard");
+  const [selected, setSelected] = useState("Dashboard")
 
   return (
     <Box
       sx={{
-        height: "100vh",
-        width: "280px",
+        height: "78em",
+        width: "400px",
         backgroundColor: "#ffffff",
         borderRight: "1px solid #e2e8f0",
         display: "flex",
         flexDirection: "column",
-        "& .pro-sidebar-inner": {
-          background: "#ffffff !important",
-          width: "280px !important",
-          minWidth: "280px !important",
-          maxWidth: "280px !important",
-          height: "100%",
-          border: "none !important",
-        },
-        "& .pro-sidebar": {
-          width: "280px !important",
-          minWidth: "280px !important",
-          maxWidth: "280px !important",
-          height: "100vh",
-          backgroundColor: "#ffffff !important",
-          border: "none !important",
-        },
-        "& .pro-icon-wrapper": {
-          backgroundColor: "transparent !important",
-          minWidth: "20px !important",
-          width: "20px !important",
-          height: "20px !important",
-          display: "flex !important",
-          alignItems: "center !important",
-          justifyContent: "center !important",
-          marginRight: "12px !important",
-        },
-        "& .pro-inner-item": {
-          padding: "8px 12px !important",
-          fontWeight: 400,
-          fontSize: "14px",
-          borderRadius: "8px",
-          margin: "2px 16px",
-          transition: "all 0.2s ease",
-          color: "#64748b !important",
-        },
-        "& .pro-inner-item:hover": {
-          color: "#6366f1 !important",
-          backgroundColor: "#f8fafc !important",
-        },
-        "& .pro-menu-item": {
-          backgroundColor: "transparent !important",
-          color: "#64748b !important",
-        },
-        "& .pro-menu-item.active": {
-          color: "#6366f1 !important",
-          backgroundColor: "#e0e7ff !important",
-          fontWeight: "600 !important",
-          "& .pro-icon-wrapper": {
-            color: "#6366f1 !important",
-          }
-        },
-        "& .pro-menu-item .pro-icon-wrapper": {
-          color: "#64748b !important",
-        },
-        "& .pro-menu-item.active .pro-icon-wrapper": {
-          color: "#6366f1 !important",
-        }
+        overflow: "hidden",
       }}
     >
-      <ProSidebar collapsed={false}>
-        <Menu iconShape="square">
-          {/* LOGO */}
-          <Box sx={{ padding: "24px 20px 16px 20px" }}>
-            <Typography
-              variant="h5"
-              sx={{ 
-                color: "#1e293b",
-                fontSize: "1.25rem",
-                fontWeight: 600,
-                letterSpacing: "-0.025em"
-              }}
-            >
-              Foxstocks
-            </Typography>
-          </Box>
+      {/* LOGO */}
+      <Box sx={{ padding: "24px 20px 20px 25px", flexShrink: 0 }}>
+        <Typography
+          variant="h5"
+          sx={{
+            color: "#1e293b",
+            fontSize: "1.9rem",
+            fontWeight: 700,
+            letterSpacing: "-0.025em",
+          }}
+        >
+          Foxstocks
+        </Typography>
+      </Box>
 
-          {/* USER PANEL SECTION */}
-          <Box sx={{ padding: "0 20px 16px 20px" }}>
-            <Typography
-              sx={{
-                fontSize: "12px",
-                fontWeight: 500,
-                color: "#64748b",
-                textTransform: "uppercase",
-                letterSpacing: "0.05em",
-                marginBottom: "8px"
-              }}
-            >
-              User Panel
-            </Typography>
-          </Box>
+      {/* USER PANEL SECTION */}
+      <Box sx={{ padding: "0 20px 16px 20px", flexShrink: 0 }}>
+        <Typography
+          sx={{
+            fontSize: "18px",
+            fontWeight: 700,
+            color: "#64748b",
+            letterSpacing: "0.02em",
+            marginLeft: "6px",
+            marginTop: "28px",
+            marginBottom: "-5px",
+            
+          }}
+        >
+          User Panel
+        </Typography>
+      </Box>
 
-          <Box sx={{ flex: 1 }}>
-            <Item
-              title="Dashboard"
-              to="/"
-              icon={<AddHomeRoundedIcon sx={{ fontSize: 18 }} />}
-              selected={selected}
-              setSelected={setSelected}
-            />
+      /* MENU ITEMS - Scrollable area */
+      <Box
+        sx={{
+          flex: 1,
+          overflowY: "auto",
+          paddingBottom: "16px",
+          "&::-webkit-scrollbar": {
+            display: "none",
+          },
+          scrollbarWidth: "none",
+          msOverflowStyle: "none",
+          padding: "0 16px",
+          display: "flex",
+          flexDirection: "column",
+          gap: "18px", // Add vertical gap between items
+        }}
+      >
+        <Item
+          title="Dashboard"
+          to="/"
+          icon={<DashboardIcon sx={{ fontSize: 24 }} />}
+          selected={selected}
+          setSelected={setSelected}
+        />
 
-            <Item
-              title="Portfolio"
-              to="/profile"
-              icon={<PermIdentityOutlinedIcon sx={{ fontSize: 18 }} />}
-              selected={selected}
-              setSelected={setSelected}
-            />
+        <Item
+          title="Portfolio"
+          to="/profile"
+          icon={<BusinessCenterIcon sx={{ fontSize: 24 }} />}
+          selected={selected}
+          setSelected={setSelected}
+        />
 
-            <Item
-              title="Trading & Market"
-              to="/trading"
-              icon={<BarChartOutlinedIcon sx={{ fontSize: 18 }} />}
-              selected={selected}
-              setSelected={setSelected}
-            />
+        <Item
+          title="Trading & Market"
+          to="/trading"
+          icon={<BarChartOutlinedIcon sx={{ fontSize: 24 }} />}
+          selected={selected}
+          setSelected={setSelected}
+        />
 
-            <Item
-              title="Research Portal"
-              to="/research"
-              icon={<SearchOutlinedIcon sx={{ fontSize: 18 }} />}
-              selected={selected}
-              setSelected={setSelected}
-            />
+        <Item
+          title="Research Portal"
+          to="/research"
+          icon={<WalletSharpIcon sx={{ fontSize: 24 }} />}
+          selected={selected}
+          setSelected={setSelected}
+        />
 
-            <Item
-              title="Wallet Transfer Pay"
-              to="/wallet"
-              icon={<AccountBalanceWalletOutlinedIcon sx={{ fontSize: 18 }} />}
-              selected={selected}
-              setSelected={setSelected}
-            />
+        <Item
+          title="Wallet Transfer Pay"
+          to="/wallet"
+          icon={<AccountBalanceSharpIcon sx={{ fontSize: 24 }} />}
+          selected={selected}
+          setSelected={setSelected}
+        />
 
-            <Item
-              title="Reporting & Transaction"
-              to="/reporting"
-              icon={<AssessmentOutlinedIcon sx={{ fontSize: 18 }} />}
-              selected={selected}
-              setSelected={setSelected}
-            />
+        <Item
+          title="Reporting & Transaction"
+          to="/reporting"
+          icon={<CompareArrowsIcon sx={{ fontSize: 24 }} />}
+          selected={selected}
+          setSelected={setSelected}
+        />
 
-            <Item
-              title="Tutorial"
-              to="/tutorial"
-              icon={<SchoolOutlinedIcon sx={{ fontSize: 18 }} />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-          </Box>
+        <Item
+          title="Tutorial"
+          to="/tutorial"
+          icon={<SchoolOutlinedIcon sx={{ fontSize: 24 }} />}
+          selected={selected}
+          setSelected={setSelected}
+        />
+      </Box>
 
-          {/* MOTIVATIONAL QUOTE CARD */}
-          <Box sx={{ padding: "16px 20px 24px 20px" }}>
-            <Card 
-              sx={{ 
-                backgroundColor: "#f0fdf4",
-                border: "1px solid #bbf7d0",
-                borderRadius: "12px",
-                boxShadow: "none"
-              }}
-            >
-              <CardContent sx={{ padding: "16px !important" }}>
-                <Box sx={{ display: "flex", justifyContent: "center", mb: 1 }}>
-                  <Box
-                    sx={{
-                      width: "32px",
-                      height: "32px",
-                      backgroundColor: "#dcfce7",
+      {/* BOTTOM SECTION - Fixed at bottom */}
+      <Box sx={{ flexShrink: 0 ,paddingBottom: "20px" }}>
+        {/* MOTIVATIONAL QUOTE CARD */}
+        <Box
+          sx={{
+            px: 3,
+            pb: 4,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            width: "100%",
+            boxSizing: "border-box",
+            py: -20,
+          }}
+        >
+          <Card
+            sx={{
+              width: "100%",
+              maxWidth: 320,
+              minWidth: 0,
+              height: "auto",
+              background: "linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%)",
+              border: "none",
+              borderRadius: "16px",
+              boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1)",
+              mx: "auto",
+              transition: "transform 0.2s",
+              "&:hover": {
+                transform: "translateY(-2px)",
+              },
+              overflow: "hidden",
+            }}
+          >
+            <CardContent sx={{ p: 3, textAlign: "center" }}>
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  mb: 2,
+                }}
+              >
+                <Box
+                  sx={{
+                    width: 50,
+                    height: 50,
+                    borderRadius: "50%",
+                    background: "linear-gradient(135deg, #fef3c7 0%, #fbbf24 100%)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    position: "relative",
+                    "&::before": {
+                      content: '""',
+                      position: "absolute",
+                      top: "50%",
+                      left: "50%",
+                      transform: "translate(-50%, -50%)",
+                      width: 35,
+                      height: 35,
                       borderRadius: "50%",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center"
+                      background: "rgba(255, 255, 255, 0.3)",
+                    },
+                  }}
+                >
+                  <LightbulbOutlinedIcon
+                    sx={{
+                      fontSize: 24,
+                      color: "#92400e",
+                      zIndex: 1,
                     }}
-                  >
-                    <LightbulbOutlinedIcon sx={{ fontSize: 16, color: "#16a34a" }} />
-                  </Box>
+                  />
                 </Box>
-                <Typography
-                  sx={{
-                    fontSize: "11px",
-                    fontWeight: 500,
-                    color: "#16a34a",
-                    textAlign: "center",
-                    marginBottom: "4px"
-                  }}
-                >
-                  Thoughts Time
-                </Typography>
-                <Typography
-                  sx={{
-                    fontSize: "11px",
-                    color: "#166534",
-                    textAlign: "center",
-                    lineHeight: 1.4
-                  }}
-                >
-                  If you aren't willing to own a stock for 10 years, don't even think about owning it for 10 minutes.
-                </Typography>
-              </CardContent>
-            </Card>
-          </Box>
+              </Box>
+              <Typography
+                sx={{
+                  fontSize: "15px",
+                  fontWeight: 600,
+                  color: "#166534",
+                  textAlign: "center",
+                  mb: 1.5,
+                  letterSpacing: "0.01em",
+                }}
+              >
+                Thoughts Time
+              </Typography>
+              <Typography
+                sx={{
+                  fontSize: "13px",
+                  color: "#166534",
+                  textAlign: "center",
+                  lineHeight: 1.4,
+                  fontWeight: 400,
+                }}
+              >
+                If you aren't willing to own a stock for 10 years, don't even think about owning it for 10 minutes.
+              </Typography>
+            </CardContent>
+          </Card>
+        </Box>
 
-          {/* LOGOUT */}
-          <Box sx={{ padding: "0 20px 24px 20px" }}>
-            <MenuItem
-              style={{
-                color: "#64748b",
-                padding: "8px 12px",
-                borderRadius: "8px",
-                fontSize: "14px",
-              }}
-              icon={<ExitToAppOutlinedIcon sx={{ fontSize: 18 }} />}
-            >
-              <Typography sx={{ fontSize: "14px" }}>Logout</Typography>
-            </MenuItem>
+        {/* LOGOUT BUTTON */}
+        <Box
+          sx={{
+            width: "100%",
+            display: "flex",
+            justifyContent: "flex-start",
+            alignItems: "center",
+            px: 4,
+          }}
+        >
+          <Box
+            sx={{
+              width: "100%",
+              display: "flex",
+              alignItems: "center",
+              color: "#64748b",
+              cursor: "pointer",
+              padding: "15px 12px",
+              borderRadius: "8px",
+              transition: "all 0.2s",
+            "&:hover": {
+              backgroundColor: "#f8fafc",
+              color: "#ef4444",
+              boxShadow: "0 2px 8px 0 rgba(239,68,68,0.08)",
+              transition: "all 0.2s",
+            },
+              marginTop: "30px",
+              marginBottom: "0px",
+            }}
+          >
+            <ExitToAppOutlinedIcon sx={{ fontSize: 24, mr: 2 }} />
+            <Typography sx={{ fontSize: "16px", fontWeight: 600 }}>Logout</Typography>
           </Box>
-        </Menu>
-      </ProSidebar>
+        </Box>
+      </Box>
     </Box>
-  );
-};
+  )
+}
 
-export default Sidebar;
+export default Sidebar
