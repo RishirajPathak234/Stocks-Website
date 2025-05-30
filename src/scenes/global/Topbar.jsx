@@ -178,7 +178,7 @@ const Topbar = () => {
       py={3.5}
       sx={{
         backgroundColor: '#ffffff',
-        borderBottom: '1px solid #f0f0f0',
+        
         minHeight: '70px',
       
       }}
@@ -202,7 +202,7 @@ const Topbar = () => {
         display="flex"
         alignItems="center"
         sx={{
-          backgroundColor: '#f8f9fa',
+          backgroundColor: '#FAF9FC',
           borderRadius: '12px',
           padding: '6.5px 20px',
           width: '375px',
@@ -247,7 +247,7 @@ const Topbar = () => {
           sx={{ cursor: 'pointer' }}
         >
           <Avatar 
-            src="./assets/1.jpg" 
+            src="./assets/gamer.png" 
             sx={{ 
               width: 40, 
               height: 40,

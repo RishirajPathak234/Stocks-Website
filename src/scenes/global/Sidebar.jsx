@@ -243,8 +243,8 @@ const Item = ({ title, to, icon, selected, setSelected, sx }) => {
         borderRadius: "8px",
         cursor: "pointer",
         transition: "all 0.2s ease",
-        backgroundColor: selected === title ? "#e0e7ff" : "transparent",
-        color: selected === title ? "#6366f1" : "#64748b",
+        backgroundColor: selected === title ? "#E9DFFF" : "transparent",
+        color: selected === title ? "#7C3AED" : "#64748b",
         fontWeight: selected === title ? 600 : 400,
         "&:hover": {
           backgroundColor: selected === title ? "#e0e7ff" : "#f8fafc",
@@ -278,9 +278,9 @@ const Sidebar = () => {
     <Box
       sx={{
         height: "78em",
-        width: "400px",
+        width: "425px",
         backgroundColor: "#ffffff",
-        borderRight: "1px solid #e2e8f0",
+      
         display: "flex",
         flexDirection: "column",
         overflow: "hidden",
@@ -319,21 +319,21 @@ const Sidebar = () => {
         </Typography>
       </Box>
 
-      /* MENU ITEMS - Scrollable area */
+     {/* MENU ITEMS - Scrollable area */}
       <Box
         sx={{
           flex: 1,
           overflowY: "auto",
           paddingBottom: "16px",
           "&::-webkit-scrollbar": {
-            display: "none",
+        display: "none",
           },
           scrollbarWidth: "none",
           msOverflowStyle: "none",
           padding: "0 16px",
           display: "flex",
           flexDirection: "column",
-          gap: "18px", // Add vertical gap between items
+          gap: "18px", 
         }}
       >
         <Item
